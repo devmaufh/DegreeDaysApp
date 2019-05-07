@@ -3,19 +3,19 @@
     <item
         android:id="@+id/homemenu_home"
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher"
-        android:title="@string/home"
+        android:icon="@drawable/insect"
+        android:title="@string/MisReg"
         />
     <item
         android:id="@+id/homemenu_registros"
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher"
-        android:title="@string/MisReg"
+        android:icon="@drawable/home"
+        android:title="@string/home"
         />
     <item
         android:id="@+id/homemenu_perfil"
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/profile"
         android:title="@string/perfil"
         />
 </menu>

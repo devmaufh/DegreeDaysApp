@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Degree Days</string>
     <string name="home">Home</string>
-    <string name="MisReg">Mis registros</string>
+    <string name="MisReg">Registro</string>
     <string name="perfil">Perfil</string>
     <string name="name">Nombre del insecto</string>
     <string name="date">Fecha</string>
