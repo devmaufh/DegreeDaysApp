@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import com.devmaufh.degreedaysapp.Fragments.HomeFragment;
 import com.devmaufh.degreedaysapp.Fragments.ListFragment;
+import com.devmaufh.degreedaysapp.Fragments.PerfilFragment;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNav;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        bindUI();
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.homemenu_registros:
                         fragment= new ListFragment();break;
                     case R.id.homemenu_perfil:
-                        fragment=null;break;
+                        fragment=new PerfilFragment();break;
                 }
                 setFragment(fragment);
                 return true;

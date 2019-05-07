@@ -1,9 +1,22 @@
 <resources>
-    <string name="app_name">DegreeDaysApp</string>
+    <string name="app_name">Degree Days</string>
     <string name="home">Home</string>
     <string name="MisReg">Mis registros</string>
     <string name="perfil">Perfil</string>
-
+    <string name="name">Nombre del insecto</string>
+    <string name="date">Fecha</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="titlulo_pickers">Obtener fecha y hora</string>
+    <string name="formato_fecha">dd/mm/yyyy</string>
+    <string name="formato_hora">hh:mm</string>
+    <string name="tMax">Temperatura máxima</string>
+    <string name="tMin">Temperatura minima</string>
+    <string name="required">No puedes dejar este campo vacío</string>
+    <string name="Temp">Temperatura</string>
+    <string name="UmbralSup">Umbral Superior</string>
+    <string name="umbralInf">Umbral Inferior</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="help">Ayuda</string>
+    <string name="info">Debes ingresar los umbrales de desarrollo</string>
 </resources>
