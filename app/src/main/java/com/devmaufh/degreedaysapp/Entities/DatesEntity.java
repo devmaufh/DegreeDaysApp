@@ -3,17 +3,15 @@ package com.devmaufh.degreedaysapp.Entities;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
 @Entity(tableName = "dates")
 public class DatesEntity {
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey()
     @NonNull
     private String id;
     @NonNull
-    private String tMax;
+    private String Tmin;
     @NonNull
-    private String tMin;
-
+    private String Tmax;
     @NonNull
     public String getId() {
         return id;
@@ -24,20 +22,20 @@ public class DatesEntity {
     }
 
     @NonNull
-    public String gettMax() {
-        return tMax;
+    public String getTmin() {
+        return Tmin;
     }
 
-    public void settMax(@NonNull String tMax) {
-        this.tMax = tMax;
+    public void setTmin(@NonNull String tmin) {
+        Tmin = tmin;
     }
 
     @NonNull
-    public String gettMin() {
-        return tMin;
+    public String getTmax() {
+        return Tmax;
     }
 
-    public void settMin(@NonNull String tMin) {
-        this.tMin = tMin;
+    public void setTmax(@NonNull String tmax) {
+        Tmax = tmax;
     }
 }

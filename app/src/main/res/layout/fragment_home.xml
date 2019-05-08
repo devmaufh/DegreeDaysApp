@@ -21,6 +21,7 @@
         app:boxBackgroundColor="@color/lightPrimary"
         app:counterEnabled="true"
         app:counterMaxLength="40"
+        app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -118,7 +119,6 @@
                     android:layout_height="wrap_content"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/fr_tiLayoutUF"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -155,7 +155,6 @@
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/fr_aceptar"
                 android:layout_width="wrap_content"
@@ -168,12 +167,8 @@
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fr_tiLayoutUF" />
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </com.google.android.material.card.MaterialCardView>
-
     <View
         android:background="@color/white"
         android:layout_width="match_parent"
@@ -184,5 +179,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

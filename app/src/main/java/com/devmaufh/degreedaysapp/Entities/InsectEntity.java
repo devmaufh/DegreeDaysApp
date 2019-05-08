@@ -15,7 +15,6 @@ public class InsectEntity {
     private double umbralS;
     @NonNull
     private double umbralI;
-
     @NonNull
     private String initialDate;
 
@@ -50,12 +49,10 @@ public class InsectEntity {
     public void setUmbralI(double umbralI) {
         this.umbralI = umbralI;
     }
-
     @NonNull
     public String getInitialDate() {
         return initialDate;
     }
-
     public void setInitialDate(@NonNull String initialDate) {
         this.initialDate = initialDate;
     }
