@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()){
                     case R.id.homemenu_home:
                         fragment=new HomeFragment();break;
-                    case R.id.homemenu_registros:
+                    case R.id.homemenu_search:
                         fragment= new ListFragment();break;
                     case R.id.homemenu_perfil:
                         fragment=new PerfilFragment();break;

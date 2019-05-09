@@ -20,4 +20,6 @@
     <string name="help">Ayuda</string>
     <string name="info">Debes ingresar los umbrales de desarrollo</string>
     <string name="errorCampoVacio">No puedes dejar este campo vacio</string>
+    <string name="search">Buscador</string>
+    <string name="Registrar">Registrar</string>
 </resources>

@@ -41,7 +41,6 @@ public abstract  class Database  extends RoomDatabase {
 
     private static class PopulateDAsync extends AsyncTask<Void, Void, Void>{
         private final DaoAccess daoAccess;
-
         private PopulateDAsync(Database db) {
             daoAccess=db.daoAccess();
         }
