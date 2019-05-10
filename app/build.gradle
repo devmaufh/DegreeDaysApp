@@ -39,4 +39,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.archLifecycleVersion"
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+    //Aditional Libraries
+    implementation 'com.wdullaer:materialdatetimepicker:4.2.0'
+
 }

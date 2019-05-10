@@ -1,5 +1,6 @@
 package com.devmaufh.degreedaysapp.Database;
 
+import android.app.Activity;
 import android.app.Application;
 import android.widget.Toast;
 
@@ -35,5 +36,8 @@ public class DatabaseViewModel extends AndroidViewModel {
     }
     public void insertDate(DatesEntity date){
         repository.insertDate(date);
+    }
+    public void getDateByDate(String date, DataRepository.SelectDateByDate.AsyncResponse response){
+        repository.getDateByDate(date,response);
     }
 }

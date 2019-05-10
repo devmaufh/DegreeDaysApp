@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.devmaufh.degreedaysapp.Activities.Registro;
 import com.devmaufh.degreedaysapp.Database.DatabaseViewModel;
+import com.devmaufh.degreedaysapp.Entities.DatesEntity;
 import com.devmaufh.degreedaysapp.Entities.InsectEntity;
 import com.devmaufh.degreedaysapp.MainActivity;
 import com.google.android.material.button.MaterialButton;
@@ -48,14 +49,6 @@ public class HomeFragment extends Fragment {
         bindUI(view);
         fabNew.setOnClickListener(v -> { //Starts Registro activity :D
             startActivity(new Intent(getContext(), Registro.class));
-            for(InsectEntity insectEntity: insectsList){
-                Log.w("ROOM","\tID: "+insectEntity.getId());
-                Log.w("ROOM","\tNombre: "+insectEntity.getName());
-                Log.w("ROOM","\tFecha inicio: "+insectEntity.getInitialDate());
-                Log.w("ROOM","\tUmbral Superior"+insectEntity.getUmbralS());
-                Log.w("ROOM","\tUmbral inferior"+insectEntity.getUmbralI());
-
-            }
         });
         return view;
     }
@@ -65,11 +58,11 @@ public class HomeFragment extends Fragment {
     private DatabaseViewModel mInsectViewModel;
     private void databaseTest(){
         mInsectViewModel= ViewModelProviders.of(this).get(DatabaseViewModel.class);
-        mInsectViewModel.getmAllInsects().observe(this, new Observer<List<InsectEntity>>() {
+        mInsectViewModel.getmAllDates().observe(this, new Observer<List<DatesEntity>>() {
             @Override
-            public void onChanged(@Nullable List<InsectEntity> insectEntities) {
-                insectsList=new ArrayList<>(insectEntities);
-                for(InsectEntity insectEntity: insectEntities){
+            public void onChanged(List<DatesEntity> datesEntities) {
+                for(DatesEntity d:datesEntities){
+                    Log.d("ROOM", "ID: "+d.getId()+"\t DATE: "+d.getDate());
                 }
             }
         });

@@ -28,6 +28,8 @@ public interface DaoAccess {
 
     @Query("SELECT * FROM insects")
     LiveData<List<InsectEntity>> getAllInsects();
+    @Query("SELECT * FROM insects WHERE id=:idInsect")
+    InsectEntity selectInsectWhere(int idInsect);
 
 
     //Dates methods
@@ -42,4 +44,13 @@ public interface DaoAccess {
 
     @Query("SELECT * FROM dates")
     LiveData<List<DatesEntity>>  getAllDates();
+
+    @Query("SELECT * FROM dates WHERE id=:idDate")
+    DatesEntity selectDateById(int idDate);
+
+    @Query("SELECT COUNT(*) FROM dates WHERE date=:da")
+    int selectDateByDate(String da);
+
+    @Query("DELETE FROM dates")
+    void deleteAllDates();
 }

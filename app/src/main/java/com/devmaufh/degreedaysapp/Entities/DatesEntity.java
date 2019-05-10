@@ -8,35 +8,45 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 @Entity(tableName = "dates")
 public class DatesEntity {
-    @PrimaryKey()
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     @NonNull
-    private String id;
+    private int id;
+    @NonNull
+    @ColumnInfo(name = "date")
+    private String date;
     @NonNull
     @ColumnInfo(name = "Tmin")
-    private String Tmin;
+    private Double Tmin;
     @NonNull
     @ColumnInfo(name = "Tmax")
-    private String Tmax;
+    private Double Tmax;
     @NonNull
-    public String getId() {
+    public int getId() {
         return id;
     }
-    public void setId(@NonNull String id) {
+    public void setId(@NonNull int id) {
         this.id = id;
     }
     @NonNull
-    public String getTmin() {
+    public Double getTmin() {
         return Tmin;
     }
-    public void setTmin(@NonNull String tmin) {
+    public void setTmin(@NonNull Double tmin) {
         Tmin = tmin;
     }
     @NonNull
-    public String getTmax() {
+    public Double getTmax() {
         return Tmax;
     }
-    public void setTmax(@NonNull String tmax) {
+    public void setTmax(@NonNull Double tmax) {
         Tmax = tmax;
+    }
+    @NonNull
+    public String getDate() {
+        return date;
+    }
+    public void setDate(@NonNull String date) {
+        this.date = date;
     }
 }

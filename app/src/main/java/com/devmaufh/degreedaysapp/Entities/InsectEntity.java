@@ -1,13 +1,11 @@
 package com.devmaufh.degreedaysapp.Entities;
 
-import java.util.Date;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
-
 @Entity(tableName = "insects", foreignKeys =@ForeignKey(entity = DatesEntity.class, parentColumns = "id",childColumns = "initialDate"))
 public class InsectEntity {
     @PrimaryKey(autoGenerate = true)
