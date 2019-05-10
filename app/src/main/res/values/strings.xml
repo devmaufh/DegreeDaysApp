@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Degree Days</string>
     <string name="home">Home</string>
-    <string name="MisReg">Mis registros</string>
+    <string name="MisReg">Registro</string>
     <string name="perfil">Perfil</string>
     <string name="name">Nombre del insecto</string>
     <string name="date">Fecha</string>
@@ -19,4 +19,9 @@
     <string name="aceptar">Aceptar</string>
     <string name="help">Ayuda</string>
     <string name="info">Debes ingresar los umbrales de desarrollo</string>
+    <string name="errorCampoVacio">No puedes dejar este campo vacio</string>
+    <string name="search">Buscador</string>
+    <string name="Registrar">Registrar</string>
+    <string name="sinRegistros">No se encontraron registros</string>
+    <string name="errorUmbralSupUmbralInf">El umbral superior no puede ser menor al umbral inferior</string>
 </resources>

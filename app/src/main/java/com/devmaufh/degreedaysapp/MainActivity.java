@@ -1,11 +1,11 @@
 package com.devmaufh.degreedaysapp;
 
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
 import android.view.MenuItem;
 
 import com.devmaufh.degreedaysapp.Fragments.HomeFragment;
@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bindUI();
+        setFragment(new HomeFragment());
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()){
                     case R.id.homemenu_home:
                         fragment=new HomeFragment();break;
-                    case R.id.homemenu_registros:
+                    case R.id.homemenu_search:
                         fragment= new ListFragment();break;
                     case R.id.homemenu_perfil:
                         fragment=new PerfilFragment();break;

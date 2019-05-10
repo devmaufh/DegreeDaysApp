@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/homemenu_home"
+        android:id="@+id/homemenu_search"
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher"
-        android:title="@string/home"
+        android:icon="@drawable/insect"
+        android:title="@string/search"
         />
     <item
-        android:id="@+id/homemenu_registros"
+        android:id="@+id/homemenu_home"
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher"
-        android:title="@string/MisReg"
+        android:icon="@drawable/home"
+        android:title="@string/home"
         />
     <item
         android:id="@+id/homemenu_perfil"
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/profile"
         android:title="@string/perfil"
         />
 </menu>
