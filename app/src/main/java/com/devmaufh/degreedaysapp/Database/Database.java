@@ -12,7 +12,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@androidx.room.Database(entities = {InsectEntity.class, DatesEntity.class},version = 1, exportSchema = false)
+@androidx.room.Database(entities = {InsectEntity.class, DatesEntity.class},version = 3, exportSchema = false)
 public abstract  class Database  extends RoomDatabase {
     public abstract DaoAccess daoAccess();
     private static volatile  Database INSTANCE;
@@ -31,14 +31,12 @@ public abstract  class Database  extends RoomDatabase {
         }
         return INSTANCE;
     }
-
     private static RoomDatabase.Callback sRoomDatabaseCallback= new Callback() {
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
             super.onOpen(db);
         }
     };
-
     private static class PopulateDAsync extends AsyncTask<Void, Void, Void>{
         private final DaoAccess daoAccess;
         private PopulateDAsync(Database db) {

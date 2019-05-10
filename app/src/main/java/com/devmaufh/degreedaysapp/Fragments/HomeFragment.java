@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import com.devmaufh.degreedaysapp.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,6 +35,7 @@ import java.util.List;
  */
 public class HomeFragment extends Fragment {
     private FloatingActionButton fabNew;
+    private ArrayList<InsectEntity> insectsList;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -42,14 +44,34 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_home, container, false);
+        databaseTest();
         bindUI(view);
         fabNew.setOnClickListener(v -> { //Starts Registro activity :D
             startActivity(new Intent(getContext(), Registro.class));
+            for(InsectEntity insectEntity: insectsList){
+                Log.w("ROOM","\tID: "+insectEntity.getId());
+                Log.w("ROOM","\tNombre: "+insectEntity.getName());
+                Log.w("ROOM","\tFecha inicio: "+insectEntity.getInitialDate());
+                Log.w("ROOM","\tUmbral Superior"+insectEntity.getUmbralS());
+                Log.w("ROOM","\tUmbral inferior"+insectEntity.getUmbralI());
+
+            }
         });
         return view;
     }
     private void bindUI(View view) {
         fabNew=(FloatingActionButton)view.findViewById(R.id.frh_fabAdd);
     }
-
+    private DatabaseViewModel mInsectViewModel;
+    private void databaseTest(){
+        mInsectViewModel= ViewModelProviders.of(this).get(DatabaseViewModel.class);
+        mInsectViewModel.getmAllInsects().observe(this, new Observer<List<InsectEntity>>() {
+            @Override
+            public void onChanged(@Nullable List<InsectEntity> insectEntities) {
+                insectsList=new ArrayList<>(insectEntities);
+                for(InsectEntity insectEntity: insectEntities){
+                }
+            }
+        });
+    }
 }

@@ -45,7 +45,7 @@ public class Registro extends AppCompatActivity {
         bindUI();
         setBackButton();
         btnInfo.setOnClickListener(v -> {
-            Toast.makeText(getApplicationContext(),R.string.info,Toast.LENGTH_LONG).show();
+            Toast.makeText(Registro.this,R.string.info,Toast.LENGTH_LONG).show();
         });
         txtEdDate.setShowSoftInputOnFocus(false);
         txtEdDate.setOnTouchListener(new View.OnTouchListener() {
@@ -69,9 +69,6 @@ public class Registro extends AppCompatActivity {
                 insert(insect);
             }
         });
-        databaseTest();
-
-
     }
     private void bindUI(){
         txtLayoutDate=(TextInputLayout) findViewById(R.id.fr_tiLayoutDate);
@@ -116,9 +113,9 @@ public class Registro extends AppCompatActivity {
         }
     }
     private void getDate(){
-        DatePickerDialog DatePicker= new DatePickerDialog(getApplicationContext());
+        DatePickerDialog DatePicker= new DatePickerDialog(Registro.this);
         DatePicker.setOnDateSetListener((view, year, month1, dayOfMonth) -> {
-            Toast.makeText(getApplicationContext(), "DIA: "+dayOfMonth+"\t MES: "+month1+"\t AÑO: "+year, Toast.LENGTH_LONG).show();
+            Toast.makeText(Registro.this, "DIA: "+dayOfMonth+"\t MES: "+month1+"\t AÑO: "+year, Toast.LENGTH_LONG).show();
             txtEdDate.setText(dayOfMonth+"/"+(month1+1)+"/"+year);
             DatePicker.dismiss();
         });
@@ -127,19 +124,6 @@ public class Registro extends AppCompatActivity {
     private void insert(InsectEntity insect){
         viewModel= ViewModelProviders.of(this).get(DatabaseViewModel.class);
         viewModel.insertInsect(insect);
-    }
-    private DatabaseViewModel mInsectViewModel;
-    private void databaseTest(){
-        mInsectViewModel= ViewModelProviders.of(this).get(DatabaseViewModel.class);
-        mInsectViewModel.getmAllInsects().observe(this, new Observer<List<InsectEntity>>() {
-            @Override
-            public void onChanged(@Nullable List<InsectEntity> insectEntities) {
-                for(InsectEntity insectEntity: insectEntities){
-                    Toast.makeText(getApplicationContext(), "Testing database :'v "+insectEntity.getName(), Toast.LENGTH_LONG).show();
-                    Log.w("ROOM P",insectEntity.getName());
-                }
-            }
-        });
     }
 
     @Override
