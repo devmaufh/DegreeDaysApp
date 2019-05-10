@@ -62,7 +62,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onChanged(List<DatesEntity> datesEntities) {
                 for(DatesEntity d:datesEntities){
-                    Log.d("ROOM", "ID: "+d.getId()+"\t DATE: "+d.getDate());
+                    Log.d("HomeFragment->databaseTest", "ID: "+d.getId()+"\t DATE: "+d.getDate());
                 }
             }
         });

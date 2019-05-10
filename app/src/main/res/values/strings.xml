@@ -22,4 +22,6 @@
     <string name="errorCampoVacio">No puedes dejar este campo vacio</string>
     <string name="search">Buscador</string>
     <string name="Registrar">Registrar</string>
+    <string name="sinRegistros">No se encontraron registros</string>
+    <string name="errorUmbralSupUmbralInf">El umbral superior no puede ser menor al umbral inferior</string>
 </resources>

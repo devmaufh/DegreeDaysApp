@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
-@androidx.room.Database(entities = {InsectEntity.class, DatesEntity.class},version = 4, exportSchema = false)
+@androidx.room.Database(entities = {InsectEntity.class, DatesEntity.class},version = 5, exportSchema = false)
 public abstract  class Database  extends RoomDatabase {
     public abstract DaoAccess daoAccess();
     private static volatile  Database INSTANCE;

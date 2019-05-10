@@ -10,11 +10,13 @@ import android.widget.Toast;
 
 import com.devmaufh.degreedaysapp.Database.DataRepository;
 import com.devmaufh.degreedaysapp.Database.DatabaseViewModel;
+import com.devmaufh.degreedaysapp.Entities.DatesEntity;
 import com.devmaufh.degreedaysapp.Entities.InsectEntity;
 import com.devmaufh.degreedaysapp.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.Calendar;
 
@@ -34,7 +36,6 @@ public class Registro extends AppCompatActivity  {
     private MaterialButton btnAceptar;
     //Database
     DatabaseViewModel viewModel;
-    int valor=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +60,17 @@ public class Registro extends AppCompatActivity  {
                 String date=txtEdDate.getText().toString();
                 double us=Double.parseDouble(txtEdUs.getText().toString());
                 double ui=Double.parseDouble(txtEdUi.getText().toString());
-                InsectEntity insect=new InsectEntity();
-                insect.setInitialDate(date);
-                insect.setName(name);
-                insect.setUmbralI(ui);
-                insect.setUmbralS(us);
-                insert(insect);
+                if(!checkTemps(us,ui)) {
+                    InsectEntity insect = new InsectEntity();
+                    insect.setInitialDate(txtEdDate.getId());
+                    insect.setName(name);
+                    insect.setUmbralI(ui);
+                    insect.setUmbralS(us);
+                    insert(insect);
+                }else{
+                    txtEdUs.requestFocus();
+                    Toast.makeText(this, getResources().getString(R.string.errorUmbralSupUmbralInf), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -127,7 +133,7 @@ public class Registro extends AppCompatActivity  {
                         now.get(Calendar.DAY_OF_MONTH) // Inital day selection
                 );
         dpd.setTitle("Selecciona una fecha");
-        dpd.setVersion(com.wdullaer.materialdatetimepicker.date.DatePickerDialog.Version.VERSION_2 );
+        dpd.setVersion(DatePickerDialog.Version.VERSION_1 );
         dpd.setMaxDate(now);
         dpd.setAccentColor(getResources().getColor(R.color.colorPrimaryDark));
         dpd.show(getSupportFragmentManager(),"DatePickerDialog");
@@ -135,6 +141,7 @@ public class Registro extends AppCompatActivity  {
     private void insert(InsectEntity insect){
         viewModel= ViewModelProviders.of(this).get(DatabaseViewModel.class);
         viewModel.insertInsect(insect);
+        finish();
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -153,17 +160,19 @@ public class Registro extends AppCompatActivity  {
     }
     private void checkIfExist(String date){
         viewModel= ViewModelProviders.of(this).get(DatabaseViewModel.class);
-        Toast.makeText(this, date, Toast.LENGTH_SHORT).show();
-        viewModel.getDateByDate(date, new DataRepository.SelectDateByDate.AsyncResponse() {
+        viewModel.getDateByDate2(date, new DataRepository.GetDateByDate.AsyncDate() {
             @Override
-            public void response(int output) {
-                if(output==0){
-                    Toast.makeText(Registro.this, "Esta fecha no tiene registros de temperatura, selecciona otra", Toast.LENGTH_SHORT).show();
-                }else{
-                    txtEdDate.setText(date);
-                }
+            public void response(DatesEntity entity) {
+                txtEdDate.setText(date);
+                txtEdDate.setId(entity.getId());
+            }
+            @Override
+            public void error(String error) {
+                Toast.makeText(Registro.this, getResources().getString(R.string.sinRegistros)+" de temperatura para esta fecha, selecciona otra", Toast.LENGTH_LONG).show();
             }
         });
     }
-
+    private boolean checkTemps(double x, double y){
+        return y>x;
+    }
 }

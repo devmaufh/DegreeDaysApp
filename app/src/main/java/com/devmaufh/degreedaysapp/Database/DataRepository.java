@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.devmaufh.degreedaysapp.Entities.DatesEntity;
 import com.devmaufh.degreedaysapp.Entities.InsectEntity;
+import com.devmaufh.degreedaysapp.R;
 
 import java.util.List;
 
@@ -36,6 +37,9 @@ public class DataRepository {
     }
     public void getDateByDate(String date, SelectDateByDate.AsyncResponse response){
         new SelectDateByDate(daoAccess,response,date).execute("");
+    }
+    public void getDateByDate2(String date, GetDateByDate.AsyncDate asyncDate){
+        new GetDateByDate(daoAccess,asyncDate,date).execute();
     }
     private static class InsertAsyncTaskDate extends AsyncTask<DatesEntity,Void,Void> {
         private DaoAccess mAsyncTaskDao;
@@ -76,19 +80,52 @@ public class DataRepository {
         }
         @Override
         protected Integer doInBackground(String... strings) {
-            Log.w("BACK",daoAccess.selectDateByDate(date)+"");
+            Log.w("AsyncSELECTDATEBY",daoAccess.selectDateByDate(date)+"");
             //result.ResInt(daoAccess.selectDateByDate(date));
             return  daoAccess.selectDateByDate(date);
         }
         @Override
         protected void onPostExecute(Integer integer) {
-            Log.w("BACK 1",integer+"\t");
+            Log.w("AsyncSELECTDATEBY",integer+"\t");
             if(delegate==null){
-                Log.w("MSG","INTERFAZ NULA");
+                Log.w("AsyncSELECTDATEBY","INTERFAZ NULA");
             }else{
-                Log.w("MSG","INTERFAZ COOL");
+                Log.w("AsyncSELECTDATEBY","INTERFAZ COOL");
 
                 delegate.response(integer);
+            }
+        }
+    }
+    public static class GetDateByDate extends AsyncTask<Void,Void,DatesEntity>{
+        private DaoAccess dao;
+        private String date;
+        public AsyncDate asyncDate;
+
+        public interface AsyncDate{
+            void response(DatesEntity entity);
+            void error(String error);
+        }
+        public GetDateByDate(DaoAccess dao,AsyncDate asyncDate,String date){
+            this.dao=dao;
+            this.date=date;
+            this.asyncDate=asyncDate;
+
+        }
+
+        @Override
+        protected DatesEntity doInBackground(Void... voids) {
+            return  dao.getDateByDate(date);
+        }
+
+        @Override
+        protected void onPostExecute(DatesEntity datesEntity) {
+            super.onPostExecute(datesEntity);
+            if(datesEntity==null){
+                asyncDate.error("No se encontraron registros de temperatura para esta fecha");
+            }else{ Log.w("ASYNCDATE","ID: "+datesEntity.getId());
+                Log.w("ASYNCDATE","DATE: "+datesEntity.getDate());
+
+                asyncDate.response(datesEntity);
             }
         }
     }

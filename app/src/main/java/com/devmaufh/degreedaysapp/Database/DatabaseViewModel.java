@@ -40,4 +40,7 @@ public class DatabaseViewModel extends AndroidViewModel {
     public void getDateByDate(String date, DataRepository.SelectDateByDate.AsyncResponse response){
         repository.getDateByDate(date,response);
     }
+    public void getDateByDate2(String date, DataRepository.GetDateByDate.AsyncDate asyncDate){
+        repository.getDateByDate2(date,asyncDate);
+    }
 }

@@ -23,7 +23,7 @@ public class InsectEntity {
     private double umbralI;
     @NonNull
     @ColumnInfo(name = "initialDate")
-    private String initialDate;
+    private int initialDate;
     public int getId() {
         return id;
     }
@@ -49,10 +49,10 @@ public class InsectEntity {
         this.umbralI = umbralI;
     }
     @NonNull
-    public String getInitialDate() {
+    public int getInitialDate() {
         return initialDate;
     }
-    public void setInitialDate(@NonNull String initialDate) {
+    public void setInitialDate(@NonNull int initialDate) {
         this.initialDate = initialDate;
     }
 }

@@ -51,6 +51,9 @@ public interface DaoAccess {
     @Query("SELECT COUNT(*) FROM dates WHERE date=:da")
     int selectDateByDate(String da);
 
+    @Query("SELECT * FROM dates WHERE date=:da")
+    DatesEntity getDateByDate(String da);
+
     @Query("DELETE FROM dates")
     void deleteAllDates();
 }
