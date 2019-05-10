@@ -155,7 +155,7 @@ public class Registro extends AppCompatActivity  {
     private void setBackButton(){
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.close);
         getSupportActionBar().setTitle(R.string.Registrar);
     }
     private void checkIfExist(String date){

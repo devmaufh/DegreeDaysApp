@@ -30,6 +30,8 @@ public interface DaoAccess {
     LiveData<List<InsectEntity>> getAllInsects();
     @Query("SELECT * FROM insects WHERE id=:idInsect")
     InsectEntity selectInsectWhere(int idInsect);
+    @Query("DELETE FROM insects")
+    void deleteAllInsect();
 
 
     //Dates methods

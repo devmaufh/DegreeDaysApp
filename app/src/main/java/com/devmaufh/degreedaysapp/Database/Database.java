@@ -45,6 +45,7 @@ public abstract  class Database  extends RoomDatabase {
         }
         @Override
         protected Void doInBackground(Void... voids) {
+            daoAccess.deleteAllInsect();
             daoAccess.deleteAllDates();
             ArrayList<DatesEntity> x=new ArrayList<DatesEntity>();
             for (int i = 0; i <= 9; i++) {
