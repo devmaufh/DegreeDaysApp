@@ -42,5 +42,6 @@ dependencies {
 
     //Aditional Libraries
     implementation 'com.wdullaer:materialdatetimepicker:4.2.0'
+    implementation 'com.github.ujwalthote:MultiLamp:2.0'
 
 }

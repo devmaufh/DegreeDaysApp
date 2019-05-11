@@ -3,9 +3,29 @@
     <color name="colorPrimary">#009688</color>
     <color name="colorPrimaryDark">#009688</color>
     <color name="colorAccent">#FF9800</color>
-
     <color name="lightPrimary">#00B7A5</color>
+
     <color name="white">#FFF</color>
     <color name="grey">#C2C2C1</color>
     <color name="black">#000</color>
+
+    <color name="indigoPrimary">#3F51B5</color>
+    <color name="indigoPrimaryDark">#303F9F</color>
+    <color name="indigoAccent">#7C4DFF</color>
+    <color name="indigoLighPrimary">#536DFE</color>
+
+    <color name="darkColorPrimary">#212121</color>
+    <color name="darkPrimaryDark">#000000</color>
+    <color name="darkLightPrimary">#484848</color>
+    <color name="darkAccent">#424242</color>
+
+    <color name="redColorPrimary">#c51162</color>
+    <color name="redColorPrimaryDark">#8e0038</color>
+    <color name="redLigthPrimary">#fd558f</color>
+    <color name="redAccent">#ffa726</color>
+
+    <color name="seaColorPrimary">#82b1ff</color>
+    <color name="seaColorPrimaryDark">#4d82cb</color>
+    <color name="seaColorLightPrimary">#80d8ff</color>
+    <color name="seaAccent">#fbc02d</color>
 </resources>

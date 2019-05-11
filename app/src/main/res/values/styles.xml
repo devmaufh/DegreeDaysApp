@@ -6,6 +6,40 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="lightPrimary">@color/lightPrimary</item>
     </style>
+
+    <style name="AppTheme.indigo" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/indigoPrimary</item>
+        <item name="colorPrimaryDark">@color/indigoPrimary</item>
+        <item name="colorAccent">@color/indigoAccent</item>
+        <item name="lightPrimary">@color/indigoLighPrimary</item>
+    </style>
+    <style name="AppTheme.dark" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/darkColorPrimary</item>
+        <item name="colorPrimaryDark">@color/darkColorPrimary</item>
+        <item name="colorAccent">@color/darkAccent</item>
+        <item name="lightPrimary">@color/darkLightPrimary</item>
+    </style>
+    <style name="AppTheme.red" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/redColorPrimary</item>
+        <item name="colorPrimaryDark">@color/redColorPrimaryDark</item>
+        <item name="colorAccent">@color/redAccent</item>
+        <item name="lightPrimary">@color/redLigthPrimary</item>
+    </style>
+
+    <style name="AppTheme.sea" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/seaColorPrimary</item>
+        <item name="colorPrimaryDark">@color/seaColorPrimaryDark</item>
+        <item name="colorAccent">@color/seaAccent</item>
+        <item name="lightPrimary">@color/seaColorLightPrimary</item>
+    </style>
+
+
+
 
 </resources>

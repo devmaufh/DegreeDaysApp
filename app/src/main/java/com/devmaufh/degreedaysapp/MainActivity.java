@@ -1,16 +1,17 @@
 package com.devmaufh.degreedaysapp;
 
-import androidx.annotation.NonNull;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.fragment.app.Fragment;
 import android.view.MenuItem;
 
 import com.devmaufh.degreedaysapp.Fragments.HomeFragment;
 import com.devmaufh.degreedaysapp.Fragments.ListFragment;
 import com.devmaufh.degreedaysapp.Fragments.PerfilFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNav;
@@ -45,4 +46,5 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frame_home,fragment);
         fragmentTransaction.commit();
     }
+
 }

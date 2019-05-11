@@ -3,6 +3,9 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.coderfolk.multilamp.customView.MultiLamp;
+import com.coderfolk.multilamp.model.Target;
+import com.coderfolk.multilamp.shapes.Circle;
 import com.devmaufh.degreedaysapp.Activities.Registro;
 import com.devmaufh.degreedaysapp.Database.DatabaseViewModel;
 import com.devmaufh.degreedaysapp.Entities.DatesEntity;
@@ -50,6 +53,7 @@ public class HomeFragment extends Fragment {
         fabNew.setOnClickListener(v -> { //Starts Registro activity :D
             startActivity(new Intent(getContext(), Registro.class));
         });
+        //initialtips();
         return view;
     }
     private void bindUI(View view) {
@@ -66,5 +70,12 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
+    }
+    private void initialtips(){
+        MultiLamp multiLamp= new MultiLamp(getActivity());
+        ArrayList<Target> targets= new ArrayList<Target>();
+        targets.add(new Target(fabNew,"AVER JSJS",MultiLamp.LEFT,new Circle(40)));
+        multiLamp.build(targets);
+        
     }
 }
