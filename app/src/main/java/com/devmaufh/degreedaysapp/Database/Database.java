@@ -48,11 +48,11 @@ public abstract  class Database  extends RoomDatabase {
         @Override
         protected Void doInBackground(Void... voids) {
             ///* TESTING
-            daoAccess.deleteAllInsect();
-            daoAccess.deleteAllDates();
+            //daoAccess.deleteAllInsect();
+            //daoAccess.deleteAllDates();
             for(DatesEntity datesEntity: AdditionalMethods.testDatesList()){
                 Log.w("DATABASE::DATES INSERTED: ",datesEntity.getDate()+"\n\t\tTMAX: "+datesEntity.getTmax()+"\n\t\t"+datesEntity.getTmin());
-                daoAccess.insertDate(datesEntity);
+              //  daoAccess.insertDate(datesEntity);
             }//*/
             return null;
         }

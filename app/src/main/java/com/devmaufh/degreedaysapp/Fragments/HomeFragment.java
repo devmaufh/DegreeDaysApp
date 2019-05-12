@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.coderfolk.multilamp.customView.MultiLamp;
@@ -21,7 +20,6 @@ import com.devmaufh.degreedaysapp.Entities.InsectEntity;
 import com.devmaufh.degreedaysapp.R;
 import com.devmaufh.degreedaysapp.Utilities.AdditionalMethods;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +39,10 @@ public class HomeFragment extends Fragment {
     private SharedPreferences preferences;
     //RecyclerView
     RecyclerView rvInsects;
-    RecyclerView.Adapter mAdapter;
-    RecyclerView.LayoutManager layoutManager;
+    RecyclerInsectsAdapter adapter;
+
+    //Database
+    private DatabaseViewModel viewModel;
 
 
     public HomeFragment() {
@@ -52,20 +52,27 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         preferences=getActivity().getSharedPreferences(AdditionalMethods.PREFERENCES_THEME  ,Context.MODE_PRIVATE);
         View view= inflater.inflate(R.layout.fragment_home, container, false);
-        databaseTest();
         bindUI(view);
         fabNew.setOnClickListener(v -> { //Starts Registro activity :D
             startActivity(new Intent(getContext(), Registro.class));
         });
-        initialtips();
-        populateRecycler(view);
-        AdditionalMethods.testDatesList();
+        viewModel.getmAllInsects().observe(this, new Observer<List<InsectEntity>>() {
+            @Override
+            public void onChanged(List<InsectEntity> insectEntities) {
+                adapter= new RecyclerInsectsAdapter(insectEntities,R.layout.rv_item,(insectEntity, position) -> {
+                    Toast.makeText(getContext(), "Click to ID:  "+insectEntity.getId()+"\nNombre: "+insectEntity.getName(), Toast.LENGTH_SHORT).show();
+                });
+                rvInsects.setLayoutManager(new GridLayoutManager(getContext(),2));
+                rvInsects.setAdapter(adapter);
+            }
+        });
         return view;
     }
     private void bindUI(View view) {
         fabNew=(FloatingActionButton)view.findViewById(R.id.frh_fabAdd);
         rvInsects=(RecyclerView)view.findViewById(R.id.frh_rvInsects);
-
+        //Initialize viewModel
+        viewModel= ViewModelProviders.of(this).get(DatabaseViewModel.class);
     }
     private DatabaseViewModel mInsectViewModel;
     private void databaseTest(){
@@ -85,22 +92,4 @@ public class HomeFragment extends Fragment {
         targets.add(new Target(fabNew,"Aquí puedes agregar\n nuevos registros",MultiLamp.LEFT,new Circle(40)));
         multiLamp.build(targets);
     }
-    private void populateRecycler(final View v){
-        insectsList= new ArrayList<>();
-        for (int i=0;i<15;i++){
-            InsectEntity insectEntity= new InsectEntity();
-            insectEntity.setName("INSECTO NO: "+i);
-            insectEntity.setInitialDate(510);
-            insectEntity.setUmbralS(29);
-            insectEntity.setUmbralI(52);
-            insectsList.add(insectEntity);
-        }
-        layoutManager= new GridLayoutManager(v.getContext(),2);
-        mAdapter= new RecyclerInsectsAdapter(insectsList,R.layout.rv_item,(insectEntity, position) -> {
-            Toast.makeText(getContext(), "Click al insecto con el nombre: "+insectEntity.getName(), Toast.LENGTH_SHORT).show();
-        });
-        rvInsects.setLayoutManager(layoutManager);
-        rvInsects.setAdapter(mAdapter);
-    }
-
 }

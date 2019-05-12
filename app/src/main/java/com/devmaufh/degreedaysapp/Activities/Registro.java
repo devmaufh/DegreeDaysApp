@@ -148,7 +148,6 @@ public class Registro extends AppCompatActivity  {
         dpd.setTitle("Selecciona una fecha");
         dpd.setVersion(DatePickerDialog.Version.VERSION_1 );
         dpd.setMaxDate(now);
-        dpd.setAccentColor(getResources().getColor(R.color.colorPrimaryDark));
         dpd.show(getSupportFragmentManager(),"DatePickerDialog");
     }
     private void insert(InsectEntity insect){

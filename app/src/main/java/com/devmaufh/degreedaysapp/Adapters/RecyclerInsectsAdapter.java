@@ -46,6 +46,10 @@ public class RecyclerInsectsAdapter extends RecyclerView.Adapter<RecyclerInsects
     public int getItemCount() {
         return insectEntityList.size();
     }
+    public void setData(List<InsectEntity> insectEntities){
+        this.insectEntityList=insectEntities;
+        notifyDataSetChanged();
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView tvName,tvAc;

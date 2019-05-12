@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         preferences=getSharedPreferences(AdditionalMethods.PREFERENCES_THEME,MODE_PRIVATE);
-        testPreferencesTheme(AdditionalMethods.SEA+"");
+        testPreferencesTheme(AdditionalMethods.BLACK+"");
         setTheme(AdditionalMethods.getTheme(preferences));
         if(TextUtils.isEmpty(preferences.getString("theme",""))){
             Toast.makeText(this, "TEMA VACIO", Toast.LENGTH_SHORT).show();
