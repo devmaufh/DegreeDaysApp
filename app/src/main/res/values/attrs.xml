@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="lightPrimary" format="reference"/>
-
+    <attr name="white" format="reference"/>
+    <attr name="colorText" format="reference"/>
+    <attr name="black" format="reference"/>
+    <attr name="grey" format="reference"/>
 </resources>

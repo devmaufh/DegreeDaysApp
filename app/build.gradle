@@ -43,5 +43,7 @@ dependencies {
     //Aditional Libraries
     implementation 'com.wdullaer:materialdatetimepicker:4.2.0'
     implementation 'com.github.ujwalthote:MultiLamp:2.0'
-
+    //For images
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'jp.wasabeef:picasso-transformations:2.2.1'
 }

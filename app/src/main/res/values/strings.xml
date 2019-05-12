@@ -24,4 +24,5 @@
     <string name="Registrar">Registrar</string>
     <string name="sinRegistros">No se encontraron registros</string>
     <string name="errorUmbralSupUmbralInf">El umbral superior no puede ser menor al umbral inferior</string>
+    <string name="acomulado">Acomulado</string>
 </resources>

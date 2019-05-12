@@ -2,6 +2,8 @@ package com.devmaufh.degreedaysapp.Database;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
+
 import com.devmaufh.degreedaysapp.Entities.DatesEntity;
 import com.devmaufh.degreedaysapp.Entities.InsectEntity;
 import com.devmaufh.degreedaysapp.Utilities.AdditionalMethods;
@@ -45,19 +47,13 @@ public abstract  class Database  extends RoomDatabase {
         }
         @Override
         protected Void doInBackground(Void... voids) {
+            ///* TESTING
             daoAccess.deleteAllInsect();
             daoAccess.deleteAllDates();
-            ArrayList<DatesEntity> x=new ArrayList<DatesEntity>();
-            for (int i = 0; i <= 9; i++) {
-                DatesEntity d=new DatesEntity();
-                d.setDate("1"+i+"/"+i+"/2019");
-                d.setTmax(39.3);
-                d.setTmin(14.1);
-                x.add(d);
-            }
-            for(DatesEntity datesEntity: x){
+            for(DatesEntity datesEntity: AdditionalMethods.testDatesList()){
+                Log.w("DATABASE::DATES INSERTED: ",datesEntity.getDate()+"\n\t\tTMAX: "+datesEntity.getTmax()+"\n\t\t"+datesEntity.getTmin());
                 daoAccess.insertDate(datesEntity);
-            }
+            }//*/
             return null;
         }
     }

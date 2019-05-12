@@ -1,5 +1,6 @@
 package com.devmaufh.degreedaysapp.Activities;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -13,6 +14,7 @@ import com.devmaufh.degreedaysapp.Database.DatabaseViewModel;
 import com.devmaufh.degreedaysapp.Entities.DatesEntity;
 import com.devmaufh.degreedaysapp.Entities.InsectEntity;
 import com.devmaufh.degreedaysapp.R;
+import com.devmaufh.degreedaysapp.Utilities.AdditionalMethods;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -24,6 +26,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 public class Registro extends AppCompatActivity  {
     // UI elements
+    private SharedPreferences preferences;
+
     private TextInputLayout txtLayoutDate;
     private TextInputEditText txtEdDate;
     private TextInputLayout txtLayoutName;
@@ -40,6 +44,15 @@ public class Registro extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        preferences=getSharedPreferences(AdditionalMethods.PREFERENCES_THEME,MODE_PRIVATE);
+        setTheme(AdditionalMethods.getTheme(preferences));
+
+        if(TextUtils.isEmpty(preferences.getString("theme",""))){
+            Toast.makeText(this, "TEMA VACIO", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "EL TEMA ES: "+preferences.getString("theme",""), Toast.LENGTH_SHORT).show();
+        }
+
         setContentView(R.layout.activity_registro);
         bindUI();
         setBackButton();
