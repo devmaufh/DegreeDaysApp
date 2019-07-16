@@ -24,4 +24,9 @@
     <string name="Registrar">Registrar</string>
     <string name="sinRegistros">No se encontraron registros</string>
     <string name="errorUmbralSupUmbralInf">El umbral superior no puede ser menor al umbral inferior</string>
+    <string name="username_or_email">Username or email</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="check_credentials">Check your credentials</string>
 </resources>
