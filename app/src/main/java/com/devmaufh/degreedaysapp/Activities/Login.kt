@@ -1,5 +1,6 @@
-package com.devmaufh.degreedaysapp
+package com.devmaufh.degreedaysapp.Activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,16 +10,16 @@ import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.Response.Listener
+
 import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.JsonRequest
-import com.android.volley.toolbox.Volley
 import com.devmaufh.degreedaysapp.API.VolleySingleton
 import com.devmaufh.degreedaysapp.Utilities.AdditionalMethods.SERVER_NAME
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
 import android.os.StrictMode
-import com.devmaufh.degreedaysapp.SharedPreferencesUtilities.PreferencesApp
+import android.view.WindowManager
+import com.devmaufh.degreedaysapp.R
 
 
 class Login : AppCompatActivity() {
@@ -28,10 +29,14 @@ class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        supportActionBar?.hide()
         if (android.os.Build.VERSION.SDK_INT > 9) {
             val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
             StrictMode.setThreadPolicy(policy)
         }
+        startActivity(Intent(this,HomeActivity::class.java))
 
     }
 

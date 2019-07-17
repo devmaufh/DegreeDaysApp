@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView android:layout_height="match_parent"
+    android:background="#FFF"
+
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Login">
+        tools:context=".Activities.Login">
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -19,6 +21,7 @@
             android:layout_marginEnd="40dp"
             android:hint="@string/username_or_email"
             app:hintEnabled="true"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +103,7 @@
             android:layout_width="0dp"
             android:layout_height="150sp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="100dp"
             android:layout_marginEnd="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

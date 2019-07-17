@@ -29,4 +29,7 @@
     <string name="sign_in">Sign in</string>
     <string name="sign_up">Sign up</string>
     <string name="check_credentials">Check your credentials</string>
+    <string name="mi_cuenta">My account</string>
+    <string name="settings">Settings</string>
+    <string name="error_umbralmayor">El umbral superior debe tener un valor mayor al umbral inferior</string>
 </resources>
