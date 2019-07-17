@@ -15,7 +15,7 @@ class InsectsViewModel (application: Application):AndroidViewModel(application){
     private val repository:InsectsRepository
     val allInsects:LiveData<List< Insect >>
     init {
-        val insectDao=InsectsRoomDatabase.getDatabase(application,viewModelScope).insectDao()
+        val insectDao=InsectsRoomDatabase.getDatabase(application).insectDao()
         repository= InsectsRepository(insectDao)
         allInsects=repository.allInsects
     }

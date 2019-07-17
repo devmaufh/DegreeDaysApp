@@ -17,7 +17,7 @@ public abstract class InsectsRoomDatabase:RoomDatabase(){
         @Volatile
         private var INSTANCE:InsectsRoomDatabase?=null
 
-        fun getDatabase(context:Context,scope:CoroutineScope):InsectsRoomDatabase{
+        fun getDatabase(context:Context):InsectsRoomDatabase{
             val tempInstance= INSTANCE
             if(tempInstance!=null){
                 return tempInstance

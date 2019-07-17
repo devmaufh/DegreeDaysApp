@@ -3,13 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemCardContainer"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="200sp"
-    app:cardElevation="15dp"
+    android:layout_height="150sp"
     android:layout_margin="5dp"
-    android:backgroundTint="@color/colorAccent"
-    app:cardCornerRadius="20dp">
+    android:orientation="vertical"
+    app:cardCornerRadius="10sp"
+    app:cardElevation="5sp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -33,7 +32,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:text="Gusano de elote blanco"
             android:textColor="@color/white"
@@ -46,7 +45,7 @@
             android:id="@+id/item_fireImage"
             android:layout_width="40sp"
             android:layout_height="40sp"
-            android:layout_marginStart="60dp"
+            android:layout_marginStart="45dp"
             app:layout_constraintStart_toEndOf="@+id/item_image"
             app:layout_constraintTop_toBottomOf="@+id/item_tvAc"
             app:srcCompat="@drawable/sigma_150" />
@@ -56,8 +55,7 @@
             style="@style/TextAppearance.MaterialComponents.Headline5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="45dp"
             android:gravity="center|start"
             android:text="352"
             android:textColor="@color/white"
@@ -70,7 +68,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="61dp"
-            android:layout_marginTop="32dp"
             android:text="10"
             android:textColor="@color/white"
             app:layout_constraintStart_toEndOf="@+id/item_tvAc"
