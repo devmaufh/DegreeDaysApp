@@ -1,6 +1,8 @@
 package com.devmaufh.degreedaysapp.Activities
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,22 +15,36 @@ import com.android.volley.Response.Listener
 
 import com.android.volley.toolbox.JsonObjectRequest
 import com.devmaufh.degreedaysapp.API.VolleySingleton
-import com.devmaufh.degreedaysapp.Utilities.AdditionalMethods.SERVER_NAME
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
 import android.os.StrictMode
 import android.view.WindowManager
+import androidx.lifecycle.ViewModelProviders
+import com.devmaufh.degreedaysapp.Database_kt.InsectsViewModel
+import com.devmaufh.degreedaysapp.Entities.Insect
 import com.devmaufh.degreedaysapp.R
+import com.devmaufh.degreedaysapp.Utilities.AdditionalMethods
+import com.devmaufh.degreedaysapp.Utilities.AdditionalMethods.*
+import org.json.JSONArray
 
 
 class Login : AppCompatActivity() {
     val url="${SERVER_NAME}login.php"
+    private lateinit var insectViewModel: InsectsViewModel
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        val sharedPref:SharedPreferences=getSharedPreferences(AdditionalMethods.PREFERENCES_NAME, Context.MODE_PRIVATE)
+        if(sharedPref.getBoolean(SESSION_STATUS,false)){
+            startActivity(Intent(this,HomeActivity::class.java))
+        }
+
+        insectViewModel= ViewModelProviders.of(this).get(InsectsViewModel::class.java)
+
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         supportActionBar?.hide()
@@ -36,7 +52,6 @@ class Login : AppCompatActivity() {
             val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
             StrictMode.setThreadPolicy(policy)
         }
-        startActivity(Intent(this,HomeActivity::class.java))
 
     }
 
@@ -53,7 +68,7 @@ class Login : AppCompatActivity() {
         }
     }
     fun signUp(v:View){
-
+        startActivity(Intent(this,SignUp::class.java))
     }
     fun sendRequest(jsonObject: JSONObject){
         val request=JsonObjectRequest(Request.Method.POST,url, jsonObject,
@@ -62,12 +77,25 @@ class Login : AppCompatActivity() {
                         Toast.makeText(this, "${response["msg"]}", Toast.LENGTH_SHORT).show()
                     }else{
                         Toast.makeText(this, "Usuario correcto", Toast.LENGTH_SHORT).show()
-                      //  PreferencesApp.prefs.name="Nombre en sharede"
+                        val array=response.getJSONArray("data")
+                        for(i in 0 until array.length()){
+                            val insect=Insect(
+                                    array.getJSONObject(i)["id_insect"].toString().toInt(),
+                                    array.getJSONObject(i)["name"].toString(),
+                                    array.getJSONObject(i)["tu"].toString().toDouble(),
+                                    array.getJSONObject(i)["tl"].toString().toDouble(),
+                                    array.getJSONObject(i)["registration_date"].toString(),
+                                    ""
+                                    )
+                            insectViewModel.vModelInsects_insert(insect)
+                        }
+                        saveOnPreferences(true,login_ed_username.text.toString())
+                        startActivity(Intent(this,HomeActivity::class.java))
                     }
                 },
                 Response.ErrorListener {error->
-                    Log.w("RESPONSE: ",error.message)
-                    Toast.makeText(this, "Este es un perro error ):${error}", Toast.LENGTH_SHORT).show()
+                    Log.w("SEND REQUEST:  ","${error.message}")
+                    Toast.makeText(this, "Credenciales invalidas", Toast.LENGTH_SHORT).show()
         })
         request.retryPolicy=DefaultRetryPolicy(
                 DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,
@@ -76,4 +104,12 @@ class Login : AppCompatActivity() {
         )
         VolleySingleton.getInstance(this).addToRequestQueue(request)
     }
+    fun saveOnPreferences(value:Boolean,user:String){
+        val sharedPref:SharedPreferences=getSharedPreferences(AdditionalMethods.PREFERENCES_NAME, Context.MODE_PRIVATE)
+        val editor=sharedPref.edit()
+        editor.putBoolean(SESSION_STATUS,value)
+        editor.putString(USER_NAME,user)
+        editor.commit()
+    }
+
 }

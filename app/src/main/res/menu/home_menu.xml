@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/homemenu_search"
-        android:enabled="true"
-        android:icon="@drawable/insect"
-        android:title="@string/search"
-        />
-    <item
-        android:id="@+id/homemenu_home"
-        android:enabled="true"
-        android:icon="@drawable/home"
-        android:title="@string/home"
-        />
-    <item
-        android:id="@+id/homemenu_perfil"
-        android:enabled="true"
-        android:icon="@drawable/profile"
-        android:title="@string/perfil"
-        />
+    <group
+        android:checkableBehavior="none"
+        >
+        <item
+            android:id="@+id/homemenu_search"
+            android:icon="@drawable/ic_cloud_24dp"
+            android:title="@string/syncronizeincloud"
+            />
+        <item
+            android:id="@+id/homemenu_home"
+            android:icon="@drawable/delete_24dp"
+            android:title="@string/delete_all_data"
+            />
+        <item
+            android:id="@+id/homemenu_perfil"
+            android:icon="@drawable/profile"
+            android:title="@string/perfil"
+            />
+
+    </group>
 </menu>

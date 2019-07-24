@@ -15,7 +15,7 @@ class InsectsViewModel (application: Application):AndroidViewModel(application){
     private val repository:InsectsRepository
     val allInsects:LiveData<List< Insect >>
     init {
-        val insectDao=InsectsRoomDatabase.getDatabase(application).insectDao()
+        val insectDao=InsectsRoomDatabase.getDatabase(application,viewModelScope).insectDao()
         repository= InsectsRepository(insectDao)
         allInsects=repository.allInsects
     }
@@ -25,4 +25,12 @@ class InsectsViewModel (application: Application):AndroidViewModel(application){
     fun vModelDates_insert(iDate: IDate)=viewModelScope.launch ( Dispatchers.IO ) {
         repository.insert_Date(iDate)
     }
+    fun vModelInsects_deleteByModel(insect: Insect)=viewModelScope.launch( Dispatchers.IO ){
+        repository.delete_Insect(insect)
+    }
+    fun vModel_deleteAll()=viewModelScope.launch ( Dispatchers.IO ) {
+        repository.delete_allInsects()
+        repository.delete_allDates()
+    }
+
 }

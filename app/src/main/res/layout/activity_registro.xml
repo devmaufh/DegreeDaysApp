@@ -18,6 +18,7 @@
         android:hint="@string/name"
         app:hintEnabled="true"
         android:textColorHint="@color/white"
+        app:errorTextAppearance="@color/white"
 
         app:counterEnabled="true"
         app:counterMaxLength="40"
@@ -45,6 +46,8 @@
         android:hint="@string/date"
         app:hintEnabled="true"
         android:textColorHint="@color/white"
+        app:errorTextAppearance="@color/white"
+
         app:layout_constraintEnd_toEndOf="parent"
 
         app:layout_constraintHorizontal_bias="0.0"
@@ -66,6 +69,7 @@
         style="@style/Widget.MaterialComponents.CardView"
         android:background="@color/white"
         app:cardCornerRadius="20dp"
+        app:cardElevation="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,6 +112,7 @@
                 app:counterEnabled="true"
                 app:counterMaxLength="3"
                 app:hintEnabled="true"
+                app:errorTextAppearance="@color/colorAccent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -131,6 +136,7 @@
                 app:counterEnabled="true"
                 app:counterMaxLength="3"
                 app:hintEnabled="true"
+                app:errorTextAppearance="@color/colorAccent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"

@@ -1,5 +1,7 @@
 package com.devmaufh.degreedaysapp.Activities
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.text.Editable
@@ -21,6 +23,7 @@ class Register: AppCompatActivity(){
         val EXTRA_TL="extra_tl"
         val EXTRA_TU="extra_tu"
         val EXTRA_DEFAULT=""
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,12 +42,19 @@ class Register: AppCompatActivity(){
 
 
         fr_aceptar.setOnClickListener {
-            validateFields()
-
+            if(validateFields()){
+                val replyIntent= Intent()
+                replyIntent.putExtra(EXTRA_NAME,fr_edName.text.toString())
+                replyIntent.putExtra(EXTRA_DATE,fr_edDate.text.toString())
+                replyIntent.putExtra(EXTRA_TL,fr_edUS.text.toString().toDouble())
+                replyIntent.putExtra(EXTRA_TL,fr_edUF.text.toString().toDouble())
+                setResult(Activity.RESULT_OK,replyIntent)
+                finish()
+            }
         }
     }
 
-    fun validateFields(){
+    fun validateFields():Boolean{
         if(!fr_edName.text.toString().isEmpty()){
             if(fr_edName.text.toString().length<40){
                 if(!fr_edDate.text.toString().isEmpty()){
@@ -52,6 +62,7 @@ class Register: AppCompatActivity(){
                         if (!fr_edUF.text.toString().isEmpty()) {
                             if(fr_edUS.text.toString().toDouble()>fr_edUF.text.toString().toDouble()) {
                                 Toast.makeText(this, "Campos correctos", Toast.LENGTH_SHORT).show()
+                                return true
                               //  insertInsect(Insect(0,fr_edName.text.toString(),fr_edUS.text.toString().toDouble(),fr_edUF.text.toString().toDouble(),fr_edDate.text.toString(),""))
 
                             }else{
@@ -80,7 +91,10 @@ class Register: AppCompatActivity(){
             fr_edName.requestFocus()
             fr_tiLayoutName.error="Tienes que ingresar un nombre"
         }
-    }//End function
+        return false
+
+    }
+    //End function
     fun listenersForEditTexts(){
         fr_edName.addTextChangedListener(object:TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -124,9 +138,9 @@ class Register: AppCompatActivity(){
         })
     }
     suspend fun insertInsect(insect:Insect){
-        val db=InsectsRoomDatabase.getDatabase(this)
-        val repo=InsectsRepository(db.insectDao())
-        repo.insert_Insect(insect)
-        Log.w("DATABASE ACTION : "," Inserted")
+       // val db=InsectsRoomDatabase.getDatabase(this)
+        //val repo=InsectsRepository(db.insectDao())
+        //repo.insert_Insect(insect)
+        //Log.w("DATABASE ACTION : "," Inserted")
     }
 }

@@ -17,6 +17,9 @@ interface InsectDao {
     @Delete()
     fun Insects_deleteByModel(insect: Insect)
 
+    @Query("DELETE FROM insects_table")
+    fun delete_allInsects()
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun Insects_insert(insect: Insect)
 
@@ -31,6 +34,9 @@ interface InsectDao {
 
     @Delete()
     fun Dates_deleteByModel(date:IDate)
+
+    @Query("DELETE FROM dates_table")
+    fun delete_allDates()
 
     @Insert
     suspend fun Dates_insert(date: IDate)
