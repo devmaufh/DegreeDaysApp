@@ -71,6 +71,7 @@ class Login : AppCompatActivity() {
         startActivity(Intent(this,SignUp::class.java))
     }
     fun sendRequest(jsonObject: JSONObject){
+        Log.w("URL-REQUEST",url)
         val request=JsonObjectRequest(Request.Method.POST,url, jsonObject,
                 Listener { response->
                     if(response["status"]==0){
@@ -94,7 +95,7 @@ class Login : AppCompatActivity() {
                     }
                 },
                 Response.ErrorListener {error->
-                    Log.w("SEND REQUEST:  ","${error.message}")
+                    Log.w("SEND REQUEST:  ","${error.toString()}")
                     Toast.makeText(this, "Credenciales invalidas", Toast.LENGTH_SHORT).show()
         })
         request.retryPolicy=DefaultRetryPolicy(
