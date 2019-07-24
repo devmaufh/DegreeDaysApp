@@ -19,3 +19,4 @@ data class IDate(
         @PrimaryKey @ColumnInfo(name = "date_id")    val date_id:String,
         @ColumnInfo(name = "min_temp")   val min_temp:Double,
         @ColumnInfo(name = "max_temp")       val max_temp:Double)
+

@@ -39,4 +39,16 @@
     <string name="register">Register</string>
     <string name="delete_all_data">Delete all data</string>
     <string name="syncronizeincloud">Synchronize data in the cloud</string>
+    <string name="no_data">Data Not founded</string>
+    <string name="delete_insect">Delete insect</string>
+    <string name="edit_insect">Edit insect</string>
+    <string name="details_insect">Insect details</string>
+    <string name="logoutS">Logout</string>
+    <string name="grados_centigrados">Degrees celsius</string>
+    <string name="fecha_de_registro">Registration date</string>
+    <string name="see_chart">Click to see chart</string>
+    <string name="confirm_yourAction">Confirm your action</string>
+    <string name="message_of_deleteConfirm">Are you sure of delete this insect?</string>
+    <string name="yes">YES</string>
+    <string name="no">No</string>
 </resources>

@@ -20,9 +20,15 @@ interface InsectDao {
     @Query("DELETE FROM insects_table")
     fun delete_allInsects()
 
+    @Query("DELETE FROM insects_table WHERE insect_id=:insect_Id")
+    fun delete_InsectById(insect_Id: Int)
+
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun Insects_insert(insect: Insect)
 
+    @Update()
+    suspend fun Insect_update (insect: Insect)
 
 
     //Fechas

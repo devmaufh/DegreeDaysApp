@@ -15,8 +15,18 @@ class InsectsRepository(private val insectDao:InsectDao){
     }
 
     @WorkerThread
+    suspend  fun update_Insect(insect: Insect){
+        insectDao.Insect_update(insect)
+    }
+
+    @WorkerThread
     suspend fun delete_Insect(insect:Insect){
         insectDao.Insects_deleteByModel(insect)
+    }
+
+    @WorkerThread
+    suspend fun delete_insectById( insect_Id:Int){
+        insectDao.delete_InsectById(insect_Id)
     }
 
     @WorkerThread

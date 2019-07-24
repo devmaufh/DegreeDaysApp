@@ -33,4 +33,12 @@ class InsectsViewModel (application: Application):AndroidViewModel(application){
         repository.delete_allDates()
     }
 
+    fun vModelInsert_deleteById(insect_Id:Int)=viewModelScope.launch ( Dispatchers.IO ) {
+        repository.delete_insectById(insect_Id)
+    }
+
+    fun vModelInsect_updateInsect(insect: Insect)=viewModelScope.launch ( Dispatchers.IO ) {
+        repository.update_Insect(insect)
+    }
+
 }

@@ -27,6 +27,8 @@ class HomeActivity : AppCompatActivity() {
     private var db: InsectsRoomDatabase? = null
     companion object {
         const val newInsectActivityRequestCode = 1
+        const val deleteInsectActivityRequestCode=2
+        const val updateInsectActivityRequestCode=3
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +56,6 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if(requestCode== newInsectActivityRequestCode && resultCode== Activity.RESULT_OK){
             data?.let {
                 val insect=Insect(0,
@@ -64,12 +65,29 @@ class HomeActivity : AppCompatActivity() {
                         it.getStringExtra(Register.EXTRA_DATE),
                         ""
                 )
-
                 insectViewModel.vModelInsects_insert(insect)
             }
         }
+        if(requestCode== deleteInsectActivityRequestCode && resultCode==Activity.RESULT_OK){
+            data?.let { intent->
+                val id=intent.getIntExtra(InsectDetailsActivity.EXTRA_INSECT_ID,0)
+                insectViewModel.vModelInsert_deleteById(id)
+            }
+        }
+        if(requestCode== updateInsectActivityRequestCode && resultCode==Activity.RESULT_OK){
+            data?.let{
+                val insect=Insect(it.getIntExtra(Register.EXTRA_ID,0),
+                        it.getStringExtra(Register.EXTRA_NAME),
+                        it.getDoubleExtra(Register.EXTRA_TU,0.0),
+                        it.getDoubleExtra(Register.EXTRA_TL,0.0),
+                        it.getStringExtra(Register.EXTRA_DATE),
+                        ""
+                )
+                Log.w("HOME ACTIVITY: ", insect.insect_id.toString())
+                //insectViewModel.vModelInsect_updateInsect(insect)
+            }
+        }
     }
-
     fun testList():List<Insect>{
         var lista= ArrayList<Insect>()
         lista.add(Insect(1,"Juan daniel",25.0,25.0,"ASies",""))

@@ -1,6 +1,8 @@
 package com.devmaufh.degreedaysapp.Utilities
 
 import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -8,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
+import com.devmaufh.degreedaysapp.Activities.Login
 import com.devmaufh.degreedaysapp.Database_kt.InsectsViewModel
 import com.devmaufh.degreedaysapp.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -35,12 +38,18 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment(){
                     true
                 }
                 R.id.homemenu_perfil->{
+                    val sharedPref: SharedPreferences =context!!.
+                            getSharedPreferences(AdditionalMethods.PREFERENCES_NAME,
+                                    Context.MODE_PRIVATE)
+                    val editor=sharedPref.edit()
+                    editor.clear().commit()
+                    startActivity(Intent(context,Login::class.java))
                     context!!.toast("CLICK profile")
+
                     true
                 }
                 else -> true
             }
-
         }
     }
     fun Context.toast(message: CharSequence) {

@@ -17,13 +17,18 @@ import com.devmaufh.degreedaysapp.R
 import kotlinx.android.synthetic.main.activity_registro.*
 
 class Register: AppCompatActivity(){
+    var name:String=""
+    var date:String=""
+    var tu:Double=0.0
+    var tl:Double=0.0
+    var id:Int=0
     companion object{
+        val EXTRA_ID = "extra_id"
         val EXTRA_NAME="extra_name"
         val EXTRA_DATE="extra_date"
         val EXTRA_TL="extra_tl"
         val EXTRA_TU="extra_tu"
         val EXTRA_DEFAULT=""
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,22 +36,36 @@ class Register: AppCompatActivity(){
         setContentView(R.layout.activity_registro)
         val intent=intent
         if( intent!=null&&
-            intent.hasExtra(EXTRA_NAME) &&
-            intent.hasExtra(EXTRA_DATE) && intent.hasExtra(EXTRA_TL)&&
-            intent.hasExtra(EXTRA_TU)
+                intent.hasExtra(EXTRA_ID)&&
+                intent.hasExtra(EXTRA_NAME) &&
+                intent.hasExtra(EXTRA_DATE) &&
+                intent.hasExtra(EXTRA_TL)&&
+                intent.hasExtra(EXTRA_TU)
         ){
-            //Mostrar valores en cajas de texto
+            id=intent.getIntExtra(EXTRA_ID,0)
+            name=intent.getStringExtra(EXTRA_NAME)
+            date=intent.getStringExtra(EXTRA_DATE)
+            tu=intent.getDoubleExtra(EXTRA_TU,0.0)
+            tl=intent.getDoubleExtra(EXTRA_TL,0.0)
+
+            fr_edName.setText(name)
+            fr_edDate.setText(date)
+            fr_edUS.setText(tu.toString())
+            fr_edUF.setText(tl.toString())
+
+            Log.w("REGISTRO - EDITAR : ",id.toString())
         }else{
             listenersForEditTexts()
+            Log.w("REGISTRO - NUEVO : ","NUEVO ")
+
         }
-
-
         fr_aceptar.setOnClickListener {
             if(validateFields()){
                 val replyIntent= Intent()
+                replyIntent.putExtra(EXTRA_ID,id)
                 replyIntent.putExtra(EXTRA_NAME,fr_edName.text.toString())
                 replyIntent.putExtra(EXTRA_DATE,fr_edDate.text.toString())
-                replyIntent.putExtra(EXTRA_TL,fr_edUS.text.toString().toDouble())
+                replyIntent.putExtra(EXTRA_TU,fr_edUS.text.toString().toDouble())
                 replyIntent.putExtra(EXTRA_TL,fr_edUF.text.toString().toDouble())
                 setResult(Activity.RESULT_OK,replyIntent)
                 finish()

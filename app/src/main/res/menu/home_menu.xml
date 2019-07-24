@@ -16,7 +16,7 @@
         <item
             android:id="@+id/homemenu_perfil"
             android:icon="@drawable/profile"
-            android:title="@string/perfil"
+            android:title="@string/logoutS"
             />
 
     </group>
