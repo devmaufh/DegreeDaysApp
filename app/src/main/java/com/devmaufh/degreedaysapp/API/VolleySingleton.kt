@@ -3,7 +3,10 @@ package com.devmaufh.degreedaysapp.API
 import android.content.Context
 import com.android.volley.Request
 import com.android.volley.RequestQueue
+import com.android.volley.toolbox.JsonRequest
 import com.android.volley.toolbox.Volley
+import org.json.JSONObject
+import java.util.*
 
 class VolleySingleton constructor(context: Context) {
     companion object{
@@ -22,4 +25,5 @@ class VolleySingleton constructor(context: Context) {
     fun <T>addToRequestQueue(req:Request<T>){
         requestQueue.add(req)
     }
+
 }

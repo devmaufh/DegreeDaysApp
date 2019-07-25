@@ -3,11 +3,7 @@
     <group
         android:checkableBehavior="none"
         >
-        <item
-            android:id="@+id/homemenu_search"
-            android:icon="@drawable/ic_cloud_24dp"
-            android:title="@string/syncronizeincloud"
-            />
+
         <item
             android:id="@+id/homemenu_home"
             android:icon="@drawable/delete_24dp"

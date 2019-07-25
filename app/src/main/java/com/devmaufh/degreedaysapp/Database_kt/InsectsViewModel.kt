@@ -22,6 +22,9 @@ class InsectsViewModel (application: Application):AndroidViewModel(application){
     fun vModelInsects_insert(insect:Insect)=viewModelScope.launch (Dispatchers.IO){
         repository.insert_Insect(insect)
     }
+
+
+
     fun vModelDates_insert(iDate: IDate)=viewModelScope.launch ( Dispatchers.IO ) {
         repository.insert_Date(iDate)
     }
@@ -30,6 +33,9 @@ class InsectsViewModel (application: Application):AndroidViewModel(application){
     }
     fun vModel_deleteAll()=viewModelScope.launch ( Dispatchers.IO ) {
         repository.delete_allInsects()
+    }
+
+    fun vModelDates_deleteAll()=viewModelScope.launch (Dispatchers.IO) {
         repository.delete_allDates()
     }
 

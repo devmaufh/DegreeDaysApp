@@ -22,6 +22,7 @@ import android.os.StrictMode
 import android.view.WindowManager
 import androidx.lifecycle.ViewModelProviders
 import com.devmaufh.degreedaysapp.Database_kt.InsectsViewModel
+import com.devmaufh.degreedaysapp.Entities.IDate
 import com.devmaufh.degreedaysapp.Entities.Insect
 import com.devmaufh.degreedaysapp.R
 import com.devmaufh.degreedaysapp.Utilities.AdditionalMethods
@@ -90,7 +91,8 @@ class Login : AppCompatActivity() {
                                     )
                             insectViewModel.vModelInsects_insert(insect)
                         }
-                        saveOnPreferences(true,login_ed_username.text.toString())
+                        saveOnPreferences(true,login_ed_username.text.toString(),login_ed_pass.text.toString())
+                        populateDates()
                         startActivity(Intent(this,HomeActivity::class.java))
                     }
                 },
@@ -105,12 +107,23 @@ class Login : AppCompatActivity() {
         )
         VolleySingleton.getInstance(this).addToRequestQueue(request)
     }
-    fun saveOnPreferences(value:Boolean,user:String){
+    fun saveOnPreferences(value:Boolean,user:String,pass:String){
         val sharedPref:SharedPreferences=getSharedPreferences(AdditionalMethods.PREFERENCES_NAME, Context.MODE_PRIVATE)
         val editor=sharedPref.edit()
         editor.putBoolean(SESSION_STATUS,value)
         editor.putString(USER_NAME,user)
+        editor.putString(USER_PASS,pass)
         editor.commit()
+    }
+    fun populateDates(){
+        insectViewModel.vModelDates_deleteAll()
+        for(i in 0 until 30){
+            Log.w("POPULATE DATABASE: ","$i")
+            val rnd1=( 30 .. 40 ).random()
+            val rnd2=( 5 .. 29 ).random()
+            val iDate= IDate("$i-07-2019",rnd1.toDouble(),rnd2.toDouble())
+            insectViewModel.vModelDates_insert(iDate)
+        }
     }
 
 }

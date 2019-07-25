@@ -8,10 +8,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProviders
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.devmaufh.degreedaysapp.API.VolleySingleton
+import com.devmaufh.degreedaysapp.Database_kt.InsectsViewModel
+import com.devmaufh.degreedaysapp.Entities.IDate
 import com.devmaufh.degreedaysapp.R
 import com.devmaufh.degreedaysapp.Utilities.AdditionalMethods
 import com.google.android.material.snackbar.Snackbar
@@ -23,10 +26,15 @@ class SignUp : AppCompatActivity() {
     var Uname:String=""
     var password:String=""
     var cPassword:String=""
+    private lateinit var insectViewModel: InsectsViewModel
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+        insectViewModel= ViewModelProviders.of(this).get(InsectsViewModel::class.java)
+
     }
     fun getFields(){
         Uemail=su_edEmail.text.toString()
@@ -57,7 +65,8 @@ class SignUp : AppCompatActivity() {
                     if(response["status"]==1){
                         Toast.makeText(this, "Registro cool", Toast.LENGTH_SHORT).show();
                         Toast.makeText(this, ""+response["user"], Toast.LENGTH_SHORT).show();
-                        saveOnPreferences(true,response["user"].toString())
+                        saveOnPreferences(true,response["user"].toString(),password)
+                        populateDates()
                         startActivity(Intent(this,HomeActivity::class.java))
                     }
                 },
@@ -68,11 +77,22 @@ class SignUp : AppCompatActivity() {
         )
         VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
-    fun saveOnPreferences(value:Boolean,user:String){
+    fun saveOnPreferences(value:Boolean,user:String,pass:String){
         val sharedPref: SharedPreferences =getSharedPreferences(AdditionalMethods.PREFERENCES_NAME, Context.MODE_PRIVATE)
         val editor=sharedPref.edit()
         editor.putBoolean(AdditionalMethods.SESSION_STATUS,value)
         editor.putString(AdditionalMethods.USER_NAME,user)
+        editor.putString(AdditionalMethods.USER_PASS,pass)
         editor.commit()
+    }
+    fun populateDates(){
+        insectViewModel.vModelDates_deleteAll()
+        for(i in 0 until 30){
+            Log.w("POPULATE DATABASE: ","$i")
+            val rnd1=( 30 .. 40 ).random()
+            val rnd2=( 5 .. 29 ).random()
+            val iDate= IDate("$i-07-2019",rnd1.toDouble(),rnd2.toDouble())
+            insectViewModel.vModelDates_insert(iDate)
+        }
     }
 }

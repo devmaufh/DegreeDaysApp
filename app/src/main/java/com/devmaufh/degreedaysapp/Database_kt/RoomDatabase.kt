@@ -51,7 +51,6 @@ public abstract class InsectsRoomDatabase:RoomDatabase(){
             }
         }
         suspend fun populateDatabase(insectDao: InsectDao){
-            //insectDao.delete_allInsects()
         }
     }
 }
