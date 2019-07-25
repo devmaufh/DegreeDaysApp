@@ -36,7 +36,7 @@ class RecyclerInsectsAdapter internal constructor(context: Context):RecyclerView
         }
         holder.tvname.text=currentInsect.name
 
-        holder.card.setOnLongClickListener {
+        holder.card.setOnClickListener() {
             Log.w("DEGREE TU ",currentInsect.tu.toString())
             Log.w("DEGREE TL ",currentInsect.tl.toString())
 
@@ -52,7 +52,6 @@ class RecyclerInsectsAdapter internal constructor(context: Context):RecyclerView
             //inflater.context.startActivity(intentDetails)
             val context =inflater.context as Activity
             context.startActivityForResult(intentDetails,deleteInsectActivityRequestCode)
-            true
         }
     }
 

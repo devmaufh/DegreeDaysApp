@@ -1,27 +1,31 @@
 package com.devmaufh.degreedaysapp.Activities
 
 import android.Manifest
-import android.content.pm.PackageManager
+import android.content.Context
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.devmaufh.degreedaysapp.Database_kt.InsectsViewModel
 import com.devmaufh.degreedaysapp.R
 import com.devmaufh.degreedaysapp.Utilities.ITRDegreeDays
+import com.github.florent37.runtimepermission.kotlin.askPermission
 import com.jjoe64.graphview.GraphView
-import com.jjoe64.graphview.series.BarGraphSeries
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
-import com.jjoe64.graphview.series.Series
-import java.text.DateFormat
-import java.text.SimpleDateFormat
+import java.io.FileNotFoundException
+import java.io.FileOutputStream
+import java.io.IOException
 
 class ChartActivity : AppCompatActivity() {
     lateinit var  graph:GraphView
@@ -41,7 +45,6 @@ class ChartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chart)
         graph=findViewById(R.id.graphic)
-        setupPermissions()
 
 
         val intent=intent
@@ -82,29 +85,46 @@ class ChartActivity : AppCompatActivity() {
             }
         })
 
-
     }
 
-    private fun setupPermissions() {
-        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater=menuInflater
+        inflater.inflate(R.menu.share_menu,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
 
-            // Should we show an explanation?
-            if (shouldShowRequestPermissionRationale(
-                            Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                // Explain to the user why we need to read the contacts
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item!!.itemId){
+            R.id.menushared_friends -> {
+                askPermission(){
+                    graph.takeSnapshotAndShare(this, "graphic", "Gráfica de líneas");
+                }.onDeclined { error->
+                }
+
             }
-            requestPermissions(arrayOf<String>(Manifest.permission.READ_EXTERNAL_STORAGE),
-                    REQUEST_PERMISSION);
-
-            return;
+            R.id.menushared_storage -> {
+                askPermission(){
+                    val bitmap=graph.takeSnapshot()
+                    val uri=saveImage(bitmap,"grafic")
+                    Toast.makeText(this, "Image saved to $uri", Toast.LENGTH_SHORT).show();
+                }.onDeclined { error->
+                }
+            }
         }
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        return super.onOptionsItemSelected(item)
     }
 
 
+
+    private fun saveImage(bitmap: Bitmap, title:String): Uri {
+
+        // Save image to gallery
+        val savedImageURL = MediaStore.Images.Media.insertImage(
+                contentResolver,
+                bitmap,
+                title,
+                "Image of $title"
+        )
+        return Uri.parse(savedImageURL)
+    }
 }

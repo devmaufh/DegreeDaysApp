@@ -156,4 +156,6 @@ class InsectDetailsActivity : AppCompatActivity() {
         val dialog:AlertDialog = builder.create()
         dialog.show()
     }
+
+
 }

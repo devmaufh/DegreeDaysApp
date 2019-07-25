@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             android:layout_gravity="bottom"
-            android:backgroundTint="@color/LightPrimary"
+            android:backgroundTint="@color/colorPrimary"
             app:buttonGravity="bottom|top"
             app:fabAlignmentMode="end"/>
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_add"
-            android:backgroundTint="@color/LightPrimary"
+            android:backgroundTint="@color/colorPrimary"
             app:fabSize="normal"
             app:layout_anchor="@id/home_bottomBar"
             app:navigationIcon="@drawable/ic_menu_black_24dp"

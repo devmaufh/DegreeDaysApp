@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item
+        android:id="@+id/menushared_friends"
+        android:icon="@drawable/share"
+        android:title="@string/share_with_friends"
+        />
+    <item
+        android:id="@+id/menushared_storage"
+        android:icon="@drawable/storage"
+        android:title="@string/save"
+        />
+</menu>

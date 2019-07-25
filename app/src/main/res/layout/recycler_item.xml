@@ -5,7 +5,7 @@
     android:id="@+id/itemCardContainer"
     android:layout_width="match_parent"
     android:layout_height="100sp"
-    android:backgroundTint="@color/white"
+    android:backgroundTint="#F7F7F7"
     android:layout_marginTop="10sp"
     android:layout_marginBottom="10sp"
     android:layout_marginLeft="20sp"
@@ -14,7 +14,9 @@
     android:stateListAnimator="@animator/lift_touch"
     app:cardCornerRadius="10sp"
     android:clickable="true"
-    app:cardElevation="5dp">
+    android:foreground="?android:attr/selectableItemBackground"
+
+    app:cardElevation="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -34,29 +36,28 @@
 
         <TextView
             android:id="@+id/item_tvName"
-            android:textSize="21sp"
-            android:textColor="#000"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="24dp"
             android:text="Gusano de elote blanco"
+            android:textColor="#000"
+            android:textSize="21sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/item_image"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView3"
+            style="@style/TextAppearance.MaterialComponents.Subtitle2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.MaterialComponents.Subtitle2"
-            android:textColor="@color/grey2"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
             android:text="@string/nombre"
+            android:textColor="@color/grey2"
             app:layout_constraintStart_toEndOf="@+id/item_image"
             app:layout_constraintTop_toBottomOf="@+id/item_tvName" />
 
