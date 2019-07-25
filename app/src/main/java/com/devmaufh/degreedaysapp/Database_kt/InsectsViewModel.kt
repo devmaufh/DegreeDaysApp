@@ -14,10 +14,14 @@ import kotlinx.coroutines.launch
 class InsectsViewModel (application: Application):AndroidViewModel(application){
     private val repository:InsectsRepository
     val allInsects:LiveData<List< Insect >>
+    val allDates:LiveData<List<IDate>>
+
+
     init {
         val insectDao=InsectsRoomDatabase.getDatabase(application,viewModelScope).insectDao()
         repository= InsectsRepository(insectDao)
         allInsects=repository.allInsects
+        allDates=repository.allDates
     }
     fun vModelInsects_insert(insect:Insect)=viewModelScope.launch (Dispatchers.IO){
         repository.insert_Insect(insect)

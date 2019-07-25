@@ -134,6 +134,8 @@ class InsectDetailsActivity : AppCompatActivity() {
     fun navigateToGraphic(v:View){
         var intent=Intent(this,ChartActivity::class.java)
         intent.putExtra(ChartActivity.EXTRA_REGISTRATION_DATE,rd)
+        intent.putExtra(ChartActivity.EXTRA_TL,tl)
+        intent.putExtra(ChartActivity.EXTRA_TU,tu)
         startActivity(intent)
     }
 

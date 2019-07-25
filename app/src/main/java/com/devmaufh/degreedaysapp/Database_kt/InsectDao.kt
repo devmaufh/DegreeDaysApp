@@ -35,6 +35,8 @@ interface InsectDao {
     @Query("SELECT * FROM dates_table ORDER BY date_id")
     fun Dates_selectAll():LiveData<List<IDate>>
 
+
+
     @Query("SELECT * FROM dates_table WHERE date_id=:date_id")
     fun Dates_selectById(date_id:Int):IDate
 
